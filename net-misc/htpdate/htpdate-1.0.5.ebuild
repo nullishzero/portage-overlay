@@ -10,7 +10,7 @@ SRC_URI="http://www.vervest.org/htp/archive/c/htpdate-1.0.5.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~mips ~ppc ~ppc64 ~s390 ~sh x86"
+KEYWORDS="~alpha ~amd64 ~arm ~hppa ~mips ~ppc ~ppc64 ~s390 ~sh ~x86"
 IUSE=""
 
 DEPEND=""
