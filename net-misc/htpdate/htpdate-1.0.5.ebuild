@@ -2,11 +2,12 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-inherit toolchain-funcs
+EAPI=5
+inherit toolchain-funcs unpacker readme.gentoo
 
 DESCRIPTION="Synchronize local workstation with time offered by remote webservers"
 HOMEPAGE="http://www.vervest.org/fiki/bin/view/HTP/DownloadC"
-SRC_URI="http://www.vervest.org/htp/archive/c/htpdate-1.0.5.tar.gz"
+SRC_URI="http://www.vervest.org/htp/archive/c/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -16,26 +17,31 @@ IUSE=""
 DEPEND=""
 RDEPEND=""
 
+DOC_CONTENTS="If you would like to run htpdate as a daemon, set
+	appropriate http servers in /etc/conf.d/htpdate!"
+
 src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	gunzip htpdate.8.gz || die
+	default
+
+	cd ${S}
+	unpacker htpdate.8.gz
 }
 
 src_compile() {
-	emake CFLAGS="-Wall ${CFLAGS} ${LDFLAGS}" CC="$(tc-getCC)" || die
+	emake CFLAGS="-Wall ${CFLAGS} ${LDFLAGS}" CC="$(tc-getCC)"
 }
 
 src_install() {
-	dosbin htpdate || die
+	dosbin htpdate
 	doman htpdate.8
 	dodoc README Changelog
 
 	newconfd "${FILESDIR}"/htpdate.conf htpdate
-	newinitd "${FILESDIR}"/htpdate.init htpdate
+	newinitd "${FILESDIR}"/htpdate.init-r1 htpdate
+
+	readme.gentoo_create_doc
 }
 
 pkg_postinst() {
-	einfo "If you would like to run htpdate as a daemon set"
-	einfo "appropriate http servers in /etc/conf.d/htpdate!"
+	readme.gentoo_print_elog
 }
