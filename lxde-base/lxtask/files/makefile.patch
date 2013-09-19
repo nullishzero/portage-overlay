@@ -1,0 +1,8 @@
+--- Makefile_orig.am	2013-09-19 08:59:24.890543765 -0700
++++ Makefile.am	2013-09-19 09:01:44.800544643 -0700
+@@ -1,3 +1,5 @@
++ACLOCAL_AMFLAGS= -I m4
++
+ SUBDIRS =	po src
+ 
+ desktopdir = $(datadir)/applications

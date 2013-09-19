@@ -1,0 +1,11 @@
+--- configure_orig.ac	2013-09-19 08:59:17.960543721 -0700
++++ configure.ac	2013-09-19 09:00:45.970544274 -0700
+@@ -6,6 +6,8 @@
+ 
+ AM_CONFIG_HEADER(config.h)
+ 
++AC_CONFIG_MACRO_DIR([m4])
++
+ AC_PROG_CC
+ AC_PROG_INSTALL
+ AM_PROG_CC_C_O
